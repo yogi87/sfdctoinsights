@@ -1,0 +1,7 @@
+<% unless current_user %>
+<div class="welcome-pre-signin"> Welcome! Please sign in to continue using your SFDC credentials to continue...</div> 
+</br>
+<div> Please update New Relic settings by navigating to the setting page in the top right before polling for data. </div>
+<hr/>
+<%=link_to "Sign in with Salesforce", "/auth/salesforce", id: "sign_in"%>
+<% end %>

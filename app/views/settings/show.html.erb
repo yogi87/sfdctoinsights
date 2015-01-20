@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sfdc app:</strong>
+  <%= @setting.sfdc_app_id %>
+</p>
+
+<p>
+  <strong>Sfdc app secret:</strong>
+  <%= @setting.sfdc_app_secret %>
+</p>
+
+<p>
+  <strong>Insights app:</strong>
+  <%= @setting.insights_app_id %>
+</p>
+
+<p>
+  <strong>Insights api key:</strong>
+  <%= @setting.insights_api_key %>
+</p>
+
+<p>
+  <strong>Insights event name:</strong>
+  <%= @setting.insights_event_name %>
+</p>
+
+<p>
+  <strong>Polling interval:</strong>
+  <%= @setting.polling_interval %>
+</p>
+
+<%= link_to 'Edit', edit_setting_path(@setting) %> |
+<%= link_to 'Back', settings_path %>

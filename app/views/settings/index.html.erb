@@ -1,0 +1,25 @@
+<h1>Current settings</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Insights App ID</th>
+      <th>Insights API Key</th>
+      <th>Insights Event Type</th>
+      <th>Polling Interval (Mins)</th>
+      <th>Edit</th>
+      <th>Remove</th>
+    </tr>
+    <%@settings.each do |setting|%>
+    <tr>
+      <td><%= truncate(setting.insights_app_id, :length => 10) %></td>
+      <td><%= truncate(setting.insights_api_key, :length => 10) %></td>
+      <td><%= truncate(setting.insights_event_name, :length => 90) %></td>
+      <td><%= setting.polling_interval %></td>
+      <td><%= link_to 'Edit', edit_setting_path(setting) %></td>
+      <td><%= link_to 'Destroy', setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </table>
+
+<% unless Setting.all.nil? %>
+<%= link_to 'New Setting', new_setting_path %>
+<% end %>

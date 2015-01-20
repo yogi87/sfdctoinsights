@@ -1,0 +1,42 @@
+<%= render :partial => "login" %>
+
+<% if current_user %>
+
+  <div class="polling"> Please use the buttons below to being polling SFDC log data! </div> 
+<hr/>
+
+<% if PollingStatus.first %>
+  <div class="polling"> Currently Polling: <b><%= PollingStatus.first.currently_polling %></b></div>
+<%end%>
+
+  <%= form_tag(:controller => 'home', :action => 'start_polling') do %>
+  <%= submit_tag "Start Polling Data", :class => "btn btn-success btn-lg btn-start" %>
+  <% end %>
+
+  <%= form_tag(:controller => 'home', :action => 'stop_polling') do %>
+  <%= submit_tag "Stop Polling Data", :class => "btn btn-danger btn-lg btn-stop" %>
+  <% end %>
+
+</br>
+<hr/>
+  <div class="polling"> Latest files sent to Insights </div> 
+  <table class="table table-striped">
+    <tr>
+      <th>Log File ID</th>
+      <th>Log File Date</th>
+      <th>Log File Type</th>
+      <th>File Completed</th>
+      <th>Time File Sent</th>
+    </tr>
+    <%@files_sent_to_insights.each do |item|%>
+    <tr>
+      <td><%= item.log_file_id %></td>
+      <td><%= item.log_date %></td>
+      <td><%= item.log_file_type %></td>
+      <td><%= item.file_complete %></td>
+      <td><%= item.updated_at %></td>
+    </tr>
+    <% end %>
+  </table>
+
+<% end %>

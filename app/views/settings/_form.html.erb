@@ -1,0 +1,31 @@
+<%= form_for(@setting) do |f| %>
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+      <ul>
+      <% @setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :insights_app_id %><br>
+    <%= f.text_field :insights_app_id %>
+  </div>
+  <div class="field">
+    <%= f.label :insights_api_key %><br>
+    <%= f.text_field :insights_api_key %>
+  </div>
+  <div class="field">
+    <%= f.label :insights_event_name %><br>
+    <%= f.text_field :insights_event_name %>
+  </div>
+  <div class="field">
+    <%= f.label :polling_interval %><br>
+    <%= f.text_field :polling_interval %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

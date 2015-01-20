@@ -1,0 +1,27 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.welcome-pre-signin{
+  font-size: 25px;
+  font-weight: corbel;
+}
+
+.polling{
+  text-align: center;
+  font-size: 25px;
+  font-weight: corbel;
+}
+
+.btn-start{
+  width: 250px;
+  height: 50px;
+  float: left;
+  margin: 50px;
+}
+
+.btn-stop{
+  width: 250px;
+  height: 50px;
+  float:right;
+  margin: 50px;
+}
