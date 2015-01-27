@@ -88,7 +88,7 @@ class SfdcLog < ActiveRecord::Base
       file_id     = log_type.split("_")[2]
       file = SfdcLog.where(:event_type => event_type, :log_date => log_date, :file_id => file_id)
       unless file.exists?
-      File.open(Rails.root.join("lib", "raw_sfdc_log_files", "#{log_type}.csv"), 'w') { |file| file.write(response.body) }
+      File.open(Rails.root.join("lib", "raw_sfdc_log_files", "#{log_type}.csv"), 'wb') { |file| file.write(response.body) }
       SfdcLog.where(:event_type => event_type, :log_date => log_date, :file_id => file_id).create
       end
     end
@@ -113,14 +113,13 @@ class SfdcLog < ActiveRecord::Base
     puts "Starting file update..."
     data_array = []
     puts "Starting parsing file: #{file_name}"
-    CSV.foreach(file_name, :encoding => 'windows-1251:utf-8', :headers => true) do |row|
+    CSV.foreach(file_name, :headers => true) do |row|
       data_hash = row.to_hash
       data_hash["eventType"] = @setting.insights_event_name
       data_hash["SFDC_eventType"] = data_hash.delete "EVENT_TYPE"
       data_hash["timestamp"] = data_hash.delete "TIMESTAMP"
       new_timestamp = {"timestamp" => convert_time(data_hash["timestamp"]).to_i}
       data_hash.update(new_timestamp)
-      data_hash.update(data_hash) { |k, v| Float(v) rescue v }
       data_array.push(data_hash)
     end
     puts "Done parsing file: #{file_name}"
